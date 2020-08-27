@@ -36,7 +36,8 @@ class GhostInvasion:
         while True:
 
             self._check_events()
-            
+            self._update_screen()
+
             # Redraw the screen during each pass through the loop to fill the screen with color
             self.screen.fill(self.settings.bg_color)
             self.ship.blitme()      #Drawing ship on the game screen
@@ -44,12 +45,24 @@ class GhostInvasion:
             # It continually updates the display to show the new positions of game
             pygame.display.flip()
 
+#*************************** _check_events()********************************
 
     def _check_events(self):
         # """Respond to keypresses and mouse events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
+
+#*************************** _update_screen()********************************
+
+    def _update_screen(self):
+        # Redraw the screen during each pass through the loop to fill the screen with color
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()  #Drawing ship on the game screen
+
+        # It continually updates the display to show the new positions of game
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
