@@ -1,6 +1,7 @@
 import sys      #importing sys
 import pygame   #importing pygame
 from settings import Settings       #importing settings class
+from ship import Ship               #importing Ship class
 
 
 class GhostInvasion:
@@ -19,8 +20,11 @@ class GhostInvasion:
         #Caption or title which will display on the top
         pygame.display.set_caption("Ghost Invasion")
 
-        
-        
+        #Ship Class
+        self.ship = Ship(self)
+
+
+
 
 
 #***************************run_game()********************************
@@ -38,6 +42,7 @@ class GhostInvasion:
 
             # Redraw the screen during each pass through the loop to fill the screen with color
             self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()      #Drawing ship on the game screen
 
             # It continually updates the display to show the new positions of game
             pygame.display.flip()
