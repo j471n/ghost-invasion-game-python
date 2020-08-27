@@ -14,6 +14,9 @@ class GhostInvasion:
         #Caption or title which will display on the top
         pygame.display.set_caption("Ghost Invasion")
 
+        # Set the background color.
+        self.bg_color = (230, 230, 230)    #similar to white
+
 
 #***************************run_game()********************************
 
@@ -27,6 +30,9 @@ class GhostInvasion:
 
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+            # Redraw the screen during each pass through the loop to fill the screen with color
+            self.screen.fill(self.bg_color)
 
             # It continually updates the display to show the new positions of game
             pygame.display.flip()
