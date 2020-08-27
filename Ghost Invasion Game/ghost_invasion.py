@@ -36,6 +36,7 @@ class GhostInvasion:
         while True:
 
             self._check_events()
+            self.ship.update()
             self._update_screen()
 
             # Redraw the screen during each pass through the loop to fill the screen with color
@@ -55,8 +56,13 @@ class GhostInvasion:
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    # Move the ship to the right.
-                    self.ship.rect.x += 1
+                    # Move the ship to the right. while press the key
+                    self.ship.moving_right = True
+
+            elif event.type == pygame.KEYUP:
+                #when release the key
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
 
 
 #*************************** _update_screen()********************************
