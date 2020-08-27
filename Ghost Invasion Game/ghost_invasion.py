@@ -13,9 +13,14 @@ class GhostInvasion:
         self.settings = Settings()
 
         #1200px wide and 800px high is known as surface "display.set_mode() represents the entire game window."
-
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
+
+        # # for run game in fullscreen>>>>>>>>>>>>
+        """if you want to use fullscreen mode then remove below 3 comments and make upper exp. as comment"""
+        # self.screen  = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
 
         #Caption or title which will display on the top
         pygame.display.set_caption("Ghost Invasion")
@@ -60,7 +65,7 @@ class GhostInvasion:
             elif event.type == pygame.KEYUP:
                 #when release the key
                 self._check_keyup_events(event)
-                
+
 
 
 #*************************** _check_keydown_events()********************************
