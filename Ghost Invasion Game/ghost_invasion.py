@@ -1,5 +1,6 @@
 import sys      #importing sys
 import pygame   #importing pygame
+from settings import Settings       #importing settings class
 
 
 class GhostInvasion:
@@ -8,14 +9,18 @@ class GhostInvasion:
     def __init__(self):
         #Initialize the game, and create game resources.
         pygame.init()
+        self.settings = Settings()
 
         #1200px wide and 800px high is known as surface "display.set_mode() represents the entire game window."
-        self.screen = pygame.display.set_mode((1200, 800))
+
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
+
         #Caption or title which will display on the top
         pygame.display.set_caption("Ghost Invasion")
 
-        # Set the background color.
-        self.bg_color = (230, 230, 230)    #similar to white
+        
+        
 
 
 #***************************run_game()********************************
@@ -32,7 +37,7 @@ class GhostInvasion:
                     sys.exit()
 
             # Redraw the screen during each pass through the loop to fill the screen with color
-            self.screen.fill(self.bg_color)
+            self.screen.fill(self.settings.bg_color)
 
             # It continually updates the display to show the new positions of game
             pygame.display.flip()
