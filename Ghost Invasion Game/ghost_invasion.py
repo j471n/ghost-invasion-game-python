@@ -58,11 +58,15 @@ class GhostInvasion:
                 if event.key == pygame.K_RIGHT:
                     # Move the ship to the right. while press the key
                     self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
 
             elif event.type == pygame.KEYUP:
                 #when release the key
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
 
 
 #*************************** _update_screen()********************************
