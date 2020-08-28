@@ -84,6 +84,16 @@ class GhostInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()      #if user press Q then exit from the screen
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()         #spacebar for firing bullets
+
+
+#*************************** _fire_bullet()********************************
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
 
 #*************************** _check_keyup_events()********************************
@@ -102,6 +112,10 @@ class GhostInvasion:
         # Redraw the screen during each pass through the loop to fill the screen with color
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()  #Drawing ship on the game screen
+
+        # Drawing the bullets on the screen
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         # It continually updates the display to show the new positions of game
         pygame.display.flip()
