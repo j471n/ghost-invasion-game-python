@@ -2,6 +2,7 @@ import sys      #importing sys
 import pygame   #importing pygame
 from settings import Settings       #importing settings class
 from ship import Ship               #importing Ship class
+from bullet import Bullet           #importing Bullet class
 
 
 class GhostInvasion:
@@ -27,6 +28,8 @@ class GhostInvasion:
 
         #Ship Class
         self.ship = Ship(self)
+        # Storing Bullets in a Group
+        self.bullets = pygame.sprite.Group()
 
 
 
@@ -42,6 +45,7 @@ class GhostInvasion:
 
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
             # Redraw the screen during each pass through the loop to fill the screen with color
