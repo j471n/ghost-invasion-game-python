@@ -14,8 +14,7 @@ class GhostInvasion:
         self.settings = Settings()
 
         #1200px wide and 800px high is known as surface "display.set_mode() represents the entire game window."
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
         # # for run game in fullscreen>>>>>>>>>>>>
         """if you want to use fullscreen mode then remove below 3 comments and make upper exp. as comment"""
@@ -48,12 +47,7 @@ class GhostInvasion:
             self._update_bullets()
             self._update_screen()
 
-            # Redraw the screen during each pass through the loop to fill the screen with color
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()      #Drawing ship on the game screen
-
-            # It continually updates the display to show the new positions of game
-            pygame.display.flip()
+            
 
 #*************************** _check_events()********************************
 
