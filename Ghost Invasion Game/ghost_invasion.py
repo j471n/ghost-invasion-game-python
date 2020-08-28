@@ -45,14 +45,7 @@ class GhostInvasion:
 
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            # Get rid of bullets that have disappeared.
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-                print(len(self.bullets))
-                
+            self._update_bullets()
             self._update_screen()
 
             # Redraw the screen during each pass through the loop to fill the screen with color
@@ -103,6 +96,18 @@ class GhostInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
+
+#*************************** _update_bullets()********************************
+
+    def _update_bullets(self):
+
+        # Update Bullets position and get rid of old bullets
+        self.bullets.update()
+        # Get rid of bullets that have disappeared.
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
 
 #*************************** _check_keyup_events()********************************
