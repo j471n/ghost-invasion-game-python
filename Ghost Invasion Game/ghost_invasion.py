@@ -114,6 +114,7 @@ class GhostInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
+
 #*************************** _update_screen()********************************
 
     def _update_screen(self):
