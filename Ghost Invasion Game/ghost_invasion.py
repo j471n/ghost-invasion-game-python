@@ -52,9 +52,12 @@ class GhostInvasion:
         while True:
 
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_ghosts()
+
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_ghosts()
+                
             self._update_screen()
 
 
