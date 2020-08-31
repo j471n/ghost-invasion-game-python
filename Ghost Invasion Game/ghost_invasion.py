@@ -4,6 +4,8 @@ from settings import Settings       #importing settings class
 from ship import Ship               #importing Ship class
 from bullet import Bullet           #importing Bullet class
 from ghost import Ghost             #importing Ghost class
+from time import sleep              #importing sleep
+from game_stats import GameStats    #importing GameStats class
 
 
 class GhostInvasion:
@@ -25,6 +27,9 @@ class GhostInvasion:
 
         #Caption or title which will display on the top
         pygame.display.set_caption("Ghost Invasion")
+
+        # Create an instance to store game statistics.
+        self.stats = GameStats(self)
 
         #Ship Class
         self.ship = Ship(self)
@@ -53,6 +58,21 @@ class GhostInvasion:
             self._update_screen()
 
 
+#***************************_ship_hit()********************************
+
+
+    def _ship_hit(self):
+        """Respond to the ship being hit by an ghost."""
+        # Decrement ships_left.
+        self.stats.ships_left -= 1
+        # Get rid of any remaining ghosts and bullets.
+        self.ghosts.empty()
+        self.bullets.empty()
+        # Create a new fleet and center the ship.
+        self._create_fleet()
+        self.ship.center_ship()
+        # Pause.
+        sleep(0.5)
 
 #***************************_update_ghosts()********************************
 
@@ -64,7 +84,7 @@ class GhostInvasion:
 
         # Look for ghost-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.ghosts):
-            print("Ship hit!!!")
+            self._ship_hit()
 
 
 #***************************_create_fleet()********************************
