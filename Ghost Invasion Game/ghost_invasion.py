@@ -1,4 +1,4 @@
-import sys      #importing sys
+    import sys      #importing sys
 import pygame   #importing pygame
 from settings import Settings       #importing settings class
 from ship import Ship               #importing Ship class
@@ -57,7 +57,9 @@ class GhostInvasion:
 #***************************_update_ghosts()********************************
 
     def _update_ghosts(self):
-        # """Update the positions of all ghosts in the fleet."""
+        # Check if the fleet is at an edge,then update the positions of all aliens in the fleet.
+    
+        self._check_fleet_edges()
         self.ghosts.update()
 
 
@@ -81,6 +83,27 @@ class GhostInvasion:
         for row_number in range(number_rows):
             for ghost_number in range(number_ghosts_x):
                 self._create_ghost(ghost_number, row_number)
+
+
+#***************************_check_fleet_edges()********************************
+
+
+    def _check_fleet_edges(self):
+        # """Respond appropriately if any ghosts have reached an edge."""
+        for ghost in self.ghosts.sprites():
+            if ghost.check_edges():
+                self._change_fleet_direction()
+                break
+
+
+#***************************_change_fleet_direction()********************************
+
+
+    def _change_fleet_direction(self):
+        #"""Drop the entire fleet and change the fleet's direction."""
+        for ghost in self.ghosts.sprites():
+            ghost.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
 
 #***************************_create_ghost()********************************
