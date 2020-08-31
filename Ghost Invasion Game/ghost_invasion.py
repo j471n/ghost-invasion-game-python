@@ -64,11 +64,19 @@ class GhostInvasion:
         number_ghosts_x = available_space_x // (2 * ghost_width)
         # Create the first row of ghosts.
         for ghost_number in range(number_ghosts_x):
-            # Create an ghost and place it in the row.
-            ghost = Ghost(self)
-            ghost.x = ghost_width + 2 * ghost_width * ghost_number
-            ghost.rect.x = ghost.x
-            self.ghosts.add(ghost)
+            self._create_ghost(ghost_number)
+
+
+#***************************_create_ghost()********************************
+
+
+    def _create_ghost(self, ghost_number):
+        # Create an ghost and place it in the row.
+        ghost = Ghost(self)
+        ghost_width = ghost.rect.width
+        ghost.x = ghost_width + 2 * ghost_width * ghost_number
+        ghost.rect.x = ghost.x
+        self.ghosts.add(ghost)
 
 #*************************** _check_events()********************************
 
@@ -146,7 +154,7 @@ class GhostInvasion:
         # Drawing the bullets on the screen
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        
+
         #to deaw ghost on the screen we called draw()
         self.ghosts.draw(self.screen)
 
