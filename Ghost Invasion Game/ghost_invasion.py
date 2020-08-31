@@ -59,23 +59,31 @@ class GhostInvasion:
         # Create an ghost and find the number of ghosts in a row.
         # Spacing between each ghost is equal to one ghost width.
         ghost = Ghost(self)
-        ghost_width = ghost.rect.width
+        ghost_width, ghost_height = ghost.rect.size
         available_space_x = self.settings.screen_width - (2 * ghost_width)
         number_ghosts_x = available_space_x // (2 * ghost_width)
-        # Create the first row of ghosts.
-        for ghost_number in range(number_ghosts_x):
-            self._create_ghost(ghost_number)
+
+        # Determine the number of rows of ghosts that fit on the screen.
+        ship_height = self.ship.rect.height
+        available_space_y = (self.settings.screen_height - (3 * ghost_height) - ship_height)
+        number_rows = available_space_y // (2 * ghost_height)
+
+        # Create the full fleet of ghosts.
+        for row_number in range(number_rows):
+            for ghost_number in range(number_ghosts_x):
+                self._create_ghost(ghost_number, row_number)
 
 
 #***************************_create_ghost()********************************
 
 
-    def _create_ghost(self, ghost_number):
+    def _create_ghost(self, ghost_number, row_number):
         # Create an ghost and place it in the row.
         ghost = Ghost(self)
-        ghost_width = ghost.rect.width
+        ghost_width, ghost_height = ghost.rect.size
         ghost.x = ghost_width + 2 * ghost_width * ghost_number
         ghost.rect.x = ghost.x
+        ghost.rect.y = ghost.rect.height + 2 * ghost.rect.height * row_number
         self.ghosts.add(ghost)
 
 #*************************** _check_events()********************************
