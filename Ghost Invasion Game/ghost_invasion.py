@@ -176,6 +176,11 @@ class GhostInvasion:
         # If so, get rid of the bullet and the ghost.
         collisions = pygame.sprite.groupcollide(self.bullets, self.ghosts, True, True)
 
+        if not self.ghosts:
+            # Destroy existing bullets and create new fleet.
+            self.bullets.empty()
+            self._create_fleet()
+
 #*************************** _check_keyup_events()********************************
 
     def _check_keyup_events(self, event):
