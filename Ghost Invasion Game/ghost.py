@@ -19,6 +19,16 @@ class Ghost(Sprite):
         self.x = float(self.rect.x)
     
     def update(self):
-        # """Move the ghost to the right."""
-        self.x += self.settings.ghost_speed
+        
+        # """Move the ghost right or left."""
+        self.x += (self.settings.ghost_speed * self.settings.fleet_direction)
         self.rect.x = self.x
+
+#----------------------------check_edges()----------------------------------------
+
+    def check_edges(self):
+        # Checking Whether an Ghost Has Hit the Edge
+        # """Return True if ghost is at edge of screen."""
+        screen_rect = self.screen.get_rect()
+        if self.rect.right >= screen_rect.right or self.rect.left <= 0:
+            return True
