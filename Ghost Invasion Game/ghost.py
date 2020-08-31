@@ -12,7 +12,7 @@ class Ghost(Sprite):
         self.image = pygame.image.load('images/ghost.png')
         self.rect = self.image.get_rect()
         # Start each new ghost near the top left of the screen.
-        u self.rect.x = self.rect.width
+        self.rect.x = self.rect.width
         self.rect.y = self.rect.height
         # Store the ghost's exact horizontal position.
-        v self.x = float(self.rect.x)
+        self.x = float(self.rect.x)

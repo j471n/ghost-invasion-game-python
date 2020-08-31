@@ -3,6 +3,7 @@ import pygame   #importing pygame
 from settings import Settings       #importing settings class
 from ship import Ship               #importing Ship class
 from bullet import Bullet           #importing Bullet class
+from ghost import Ghost             #importing Ghost class
 
 
 class GhostInvasion:
@@ -29,6 +30,9 @@ class GhostInvasion:
         self.ship = Ship(self)
         # Storing Bullets in a Group
         self.bullets = pygame.sprite.Group()
+        self.ghosts = pygame.sprite.Group()
+
+        self._create_fleet()
 
 
 
@@ -47,7 +51,14 @@ class GhostInvasion:
             self._update_bullets()
             self._update_screen()
 
-            
+
+#***************************_create_fleet()********************************
+
+    def _create_fleet(self):
+        """Create the fleet of ghosts."""
+        # Make an ghost.
+        ghost = Ghost(self)
+        self.ghosts.add(ghost)
 
 #*************************** _check_events()********************************
 
@@ -125,6 +136,9 @@ class GhostInvasion:
         # Drawing the bullets on the screen
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        
+        #to deaw ghost on the screen we called draw()
+        self.ghosts.draw(self.screen)
 
         # It continually updates the display to show the new positions of game
         pygame.display.flip()
