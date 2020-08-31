@@ -62,6 +62,10 @@ class GhostInvasion:
         self._check_fleet_edges()
         self.ghosts.update()
 
+        # Look for ghost-ship collisions.
+        if pygame.sprite.spritecollideany(self.ship, self.ghosts):
+            print("Ship hit!!!")
+
 
 #***************************_create_fleet()********************************
 
