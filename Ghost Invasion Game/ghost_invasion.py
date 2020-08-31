@@ -56,9 +56,19 @@ class GhostInvasion:
 
     def _create_fleet(self):
         """Create the fleet of ghosts."""
-        # Make an ghost.
+        # Create an ghost and find the number of ghosts in a row.
+        # Spacing between each ghost is equal to one ghost width.
         ghost = Ghost(self)
-        self.ghosts.add(ghost)
+        ghost_width = ghost.rect.width
+        available_space_x = self.settings.screen_width - (2 * ghost_width)
+        number_ghosts_x = available_space_x // (2 * ghost_width)
+        # Create the first row of ghosts.
+        for ghost_number in range(number_ghosts_x):
+            # Create an ghost and place it in the row.
+            ghost = Ghost(self)
+            ghost.x = ghost_width + 2 * ghost_width * ghost_number
+            ghost.rect.x = ghost.x
+            self.ghosts.add(ghost)
 
 #*************************** _check_events()********************************
 
