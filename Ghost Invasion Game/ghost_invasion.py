@@ -49,7 +49,16 @@ class GhostInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_ghosts()
             self._update_screen()
+
+
+
+#***************************_update_ghosts()********************************
+
+    def _update_ghosts(self):
+        # """Update the positions of all ghosts in the fleet."""
+        self.ghosts.update()
 
 
 #***************************_create_fleet()********************************

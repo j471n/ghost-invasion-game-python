@@ -8,6 +8,7 @@ class Ghost(Sprite):
         # """Initialize the ghost and set its starting position."""
         super().__init__()
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         # Load the ghost image and set its rect attribute.
         self.image = pygame.image.load('images/ghost.png')
         self.rect = self.image.get_rect()
@@ -16,3 +17,8 @@ class Ghost(Sprite):
         self.rect.y = self.rect.height
         # Store the ghost's exact horizontal position.
         self.x = float(self.rect.x)
+    
+    def update(self):
+        # """Move the ghost to the right."""
+        self.x += self.settings.ghost_speed
+        self.rect.x = self.x

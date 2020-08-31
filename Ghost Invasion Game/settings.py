@@ -18,3 +18,6 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)  # 60, 60, 60
         self.bullets_allowed = 20         #20 bullets allowed at a position
+
+        # ghost settings
+        self.ghost_speed = 2.0
