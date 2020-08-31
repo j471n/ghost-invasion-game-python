@@ -74,6 +74,19 @@ class GhostInvasion:
         # Pause.
         sleep(0.5)
 
+
+#***************************_check_ghosts_bottom()********************************
+
+
+    def _check_ghosts_bottom(self):
+        #"""Check if any ghosts have reached the bottom of the screen."""
+        screen_rect = self.screen.get_rect()
+        for ghost in self.ghosts.sprites():
+            if ghost.rect.bottom &gt;= screen_rect.bottom:
+                # Treat this the same as if the ship got hit.
+                self._ship_hit()
+                break
+
 #***************************_update_ghosts()********************************
 
     def _update_ghosts(self):
@@ -85,6 +98,9 @@ class GhostInvasion:
         # Look for ghost-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.ghosts):
             self._ship_hit()
+            
+        # Look for ghosts hitting the bottom of the screen.
+        self._check_ghosts_bottom()
 
 
 #***************************_create_fleet()********************************
