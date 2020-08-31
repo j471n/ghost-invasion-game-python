@@ -1,4 +1,4 @@
-    import sys      #importing sys
+import sys      #importing sys
 import pygame   #importing pygame
 from settings import Settings       #importing settings class
 from ship import Ship               #importing Ship class
@@ -57,7 +57,7 @@ class GhostInvasion:
 #***************************_update_ghosts()********************************
 
     def _update_ghosts(self):
-        # Check if the fleet is at an edge,then update the positions of all aliens in the fleet.
+        # Check if the fleet is at an edge,then update the positions of all ghosts in the fleet.
     
         self._check_fleet_edges()
         self.ghosts.update()
@@ -171,7 +171,10 @@ class GhostInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-
+                
+        # Check for any bullets that have hit ghosts.
+        # If so, get rid of the bullet and the ghost.
+        collisions = pygame.sprite.groupcollide(self.bullets, self.ghosts, True, True)
 
 #*************************** _check_keyup_events()********************************
 
