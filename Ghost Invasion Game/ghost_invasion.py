@@ -83,6 +83,7 @@ class GhostInvasion:
             # Pause.
             sleep(0.5)
 
+
             pygame.mouse.set_visible(True)
         else:
             self.stats.game_active = False
