@@ -6,6 +6,7 @@ from bullet import Bullet           #importing Bullet class
 from ghost import Ghost             #importing Ghost class
 from time import sleep              #importing sleep
 from game_stats import GameStats    #importing GameStats class
+from button import Button           #importing Button class
 
 
 class GhostInvasion:
@@ -39,6 +40,9 @@ class GhostInvasion:
 
         self._create_fleet()
 
+        # Make the Play button.
+        self.play_button = Button(self, "Play")
+
 
 
 
@@ -57,7 +61,7 @@ class GhostInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_ghosts()
-                
+
             self._update_screen()
 
 
@@ -79,8 +83,8 @@ class GhostInvasion:
             # Pause.
             sleep(0.5)
         else:
-            self.stats.game_active = False    
-    
+            self.stats.game_active = False
+
 
 
 #***************************_check_ghosts_bottom()********************************
@@ -106,7 +110,7 @@ class GhostInvasion:
         # Look for ghost-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.ghosts):
             self._ship_hit()
-            
+
         # Look for ghosts hitting the bottom of the screen.
         self._check_ghosts_bottom()
 
@@ -261,6 +265,10 @@ class GhostInvasion:
 
         #to deaw ghost on the screen we called draw()
         self.ghosts.draw(self.screen)
+
+        # Draw the play button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         # It continually updates the display to show the new positions of game
         pygame.display.flip()
