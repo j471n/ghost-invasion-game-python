@@ -76,8 +76,9 @@ class GhostInvasion:
         """Respond to the ship being hit by an ghost."""
 
         if self.stats.ships_left > 0:
-            # Decrement ships_left.
+            # Decrement ships_left, and update scoreboard.
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             # Get rid of any remaining ghosts and bullets.
             self.ghosts.empty()
             self.bullets.empty()
@@ -213,6 +214,7 @@ class GhostInvasion:
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
             # Get rid of any remaining ghosts and bullets.
             self.ghosts.empty()
@@ -278,7 +280,7 @@ class GhostInvasion:
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
-            
+
             self.sb.prep_score()
             self.sb.check_high_score()
 
