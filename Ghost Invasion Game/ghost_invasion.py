@@ -82,6 +82,8 @@ class GhostInvasion:
             self.ship.center_ship()
             # Pause.
             sleep(0.5)
+
+            pygame.mouse.set_visible(True)
         else:
             self.stats.game_active = False
 
@@ -208,6 +210,9 @@ class GhostInvasion:
                 # Create a new fleet and center the ship.
                 self._create_fleet()
                 self.ship.center_ship()
+
+                # Hide the mouse cursor.
+                pygame.mouse.set_visible(False)
 
 
 #*************************** _check_keydown_events()********************************
