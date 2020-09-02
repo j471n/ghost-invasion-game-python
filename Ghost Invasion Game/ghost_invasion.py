@@ -273,6 +273,10 @@ class GhostInvasion:
         # Remove any bullets and ghosts that have collided.
         collisions = pygame.sprite.groupcollide(self.bullets, self.ghosts,True, True)
 
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
+
         if not self.ghosts:
             # Destroy existing bullets and create new fleet.
             self.bullets.empty()
