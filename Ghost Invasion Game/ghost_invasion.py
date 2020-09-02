@@ -7,6 +7,7 @@ from ghost import Ghost             #importing Ghost class
 from time import sleep              #importing sleep
 from game_stats import GameStats    #importing GameStats class
 from button import Button           #importing Button class
+from scoreboard import Scoreboard   #inporting Scoreboard class
 
 
 class GhostInvasion:
@@ -31,6 +32,9 @@ class GhostInvasion:
 
         # Create an instance to store game statistics.
         self.stats = GameStats(self)
+
+        #Create a scoreboard
+        self.sb = Scoreboard(self)
 
         #Ship Class
         self.ship = Ship(self)
@@ -187,7 +191,7 @@ class GhostInvasion:
             elif event.type == pygame.KEYUP:
                 #when release the key
                 self._check_keyup_events(event)
-            
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
@@ -201,23 +205,23 @@ class GhostInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
 
-                # Reset the game settings.
-                self.settings.initialize_dynamic_settings()
+            # Reset the game settings.
+            self.settings.initialize_dynamic_settings()
 
-                # Reset the game statistics.
-                self.stats.reset_stats()
-                self.stats.game_active = True
-            
-                # Get rid of any remaining ghosts and bullets.
-                self.ghosts.empty()
-                self.bullets.empty()
+            # Reset the game statistics.
+            self.stats.reset_stats()
+            self.stats.game_active = True
 
-                # Create a new fleet and center the ship.
-                self._create_fleet()
-                self.ship.center_ship()
+            # Get rid of any remaining ghosts and bullets.
+            self.ghosts.empty()
+            self.bullets.empty()
 
-                # Hide the mouse cursor.
-                pygame.mouse.set_visible(False)
+            # Create a new fleet and center the ship.
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Hide the mouse cursor.
+            pygame.mouse.set_visible(False)
 
 
 #*************************** _check_keydown_events()********************************
@@ -299,6 +303,9 @@ class GhostInvasion:
 
         #to deaw ghost on the screen we called draw()
         self.ghosts.draw(self.screen)
+
+        # Draw the score information.
+        self.sb.show_score()
 
         # Draw the play button if the game is inactive.
         if not self.stats.game_active:
