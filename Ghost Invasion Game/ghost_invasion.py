@@ -90,7 +90,7 @@ class GhostInvasion:
         #"""Check if any ghosts have reached the bottom of the screen."""
         screen_rect = self.screen.get_rect()
         for ghost in self.ghosts.sprites():
-            if ghost.rect.bottom &gt;= screen_rect.bottom:
+            if ghost.rect.bottom >= screen_rect.bottom:
                 # Treat this the same as if the ship got hit.
                 self._ship_hit()
                 break
