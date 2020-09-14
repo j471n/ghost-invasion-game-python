@@ -1,6 +1,14 @@
 # Ghost Invasion Game in Python [Completed]
 
 
+
+### Preview : 
+
+<p align="center">
+	<img src="https://github.com/j471n/ghost-invasion-game-python/blob/master/Ghost%20Invasion%20Game/images/preview.gif">
+</p>
+<br>
+
 ## Table of Contents
 
 - [Creating a Pygame Window and Responding to User Input](#1)
@@ -177,7 +185,7 @@
    
 
     <!-- *********************************************part3************************************* -->
-<h2id = "3">Creating a Settings Class</h2>
+<h2 id = "3">Creating a Settings Class</h2>
 
     
         
@@ -568,7 +576,7 @@
 
 <!-- *********************************************part19************************************* -->
 
-- <h3id = "8.7">Creating the _update_bullets() Method</h3>
+- <h3 id = "8.7">Creating the _update_bullets() Method</h3>
 
         
     - We want to keep the <i>GhostInvasion</i> class reasonably well organized, so now that we’ve written and checked the bullet management code, we can move it to a separate method. We’ll create a new method called <code>_update_bullets()</code>                and add it just before _update_screen()
@@ -1975,8 +1983,5 @@ Pygame draws each ship.
 	```
 
 
-## Preview
-
-![Check it out](https://github.com/j471n/ghost-invasion-game-python/tree/master/Ghost%20Invasion%20Game/images/preview.gif)
 
   
